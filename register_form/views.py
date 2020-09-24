@@ -2,14 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import SubmissionFormModel
 from .forms import FormSubmissionModel, NewUserCreation
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import HttpResponse
 
 
 @login_required(login_url='login')
@@ -52,34 +47,14 @@ def logout_page(request):
 
 def index(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        birthday = request.POST['birthday']
-        email = request.POST['email']
-        phone = request.POST['phone']
-
-        subject = name
-        message = birthday + '' + email + '' + phone
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = ['ndipdesmond247@gmail.com', ]
-        send_mail(subject, message, email_from, recipient_list, fail_silently=False)
-
         form = FormSubmissionModel(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'your form was submitted successfully')
             return redirect('home')
         else:
-            # name = request.POST['name']
-            # birthday = request.POST['birthday']
-            # email = request.POST['email']
-            # phone = request.POST['phone']
-
             messages.info(request, 'form was not submitted, there was an error try again ')
-            # context = {
-            #     name: 'name',  birthday: ' birthday',
-            #     email: 'email', phone: 'phone'
-            #
-            # }
+
             return render(request, 'index.html', {})
     return render(request, 'index.html', {})
 
