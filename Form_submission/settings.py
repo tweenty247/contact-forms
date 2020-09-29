@@ -27,7 +27,7 @@ SECRET_KEY = 'kvanai1ttp&awlu(zo@t7fsp(d!xcgq_79@k1+km(n7rb#l(#&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['mymum.herokuapp.com']
+ALLOWED_HOSTS = ['mymum.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
