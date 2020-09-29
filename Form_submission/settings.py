@@ -82,6 +82,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, default='postgres://urvannubcpeuem:691e6d9c684642516360d107d005fdb280894454abe6fe90497bb9fa51a6ba24@ec2-3-226-231-4.compute-1.amazonaws.com:5432/d574t3oh4kmqi2')
 
 
 # Password validation
