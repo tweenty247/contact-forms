@@ -93,6 +93,8 @@ def update_data(request, up_id):
 def delete_data(request, del_id):
     data = SubmissionFormModel.objects.get(id=del_id)
     data.delete()
+    username = data.name
+    messages.info(request,  username + ' ' + 'Was successfully Deleted from the DataBase')
     return redirect('view_data')
 
 
